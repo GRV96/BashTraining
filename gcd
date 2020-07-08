@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Calculates the greatest common divisor of
+# two integers using the Euclidean algorithm.
+
+# Parameters
+# 	$1: an integer
+#	$2: an integer
+# Output: the greatest common divisor of $1 and $2
+
 num1=$1
 num2=$2
 
@@ -7,9 +15,17 @@ if [ $num1 -eq $num2 ]; then
 	echo $num1
 	exit 0
 elif [ $num1 -lt $num2 ]; then
+	# Switch values. num1 must be greater than num2.
 	tmp=$num1
 	num1=$num2
 	num2=$tmp
 fi
 
-echo $num1 $num2
+r=1 # Arbitrary value
+while [ $r -ne 0 ]; do
+	let "r = $num1%$num2"
+	num1=$num2
+	num2=$r
+done
+
+echo $num1

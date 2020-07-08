@@ -7,7 +7,10 @@
 
 # Output: the absolute value of $1
 
-if [ $1 -lt 0 ]; then
+if [ $1 -eq 0 ]; then
+	# Avoids the output -0.
+	let "absval = 0"
+elif [ $1 -lt 0 ]; then
 	let "absval = -$1"
 else
 	absval=$1 

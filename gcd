@@ -6,10 +6,11 @@
 # Parameters
 # 	$1: an integer
 #	$2: an integer
+
 # Output: the greatest common divisor of $1 and $2
 
-num1=$1
-num2=$2
+num1=`abs $1`
+num2=`abs $2`
 
 if [ $num1 -eq $num2 ]; then
 	echo $num1

@@ -8,7 +8,7 @@
 # Output: the absolute value of $1
 
 if [ $1 -lt 0 ]; then
-	let "absval = -1 * $1"
+	let "absval = -$1"
 else
 	absval=$1 
 fi

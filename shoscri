@@ -8,10 +8,42 @@
 
 # Output
 #	The script's shell's name
-#	Or "-" if $1 is not a script (no sha-bang or not a file)
+#	Or "" if $1 is not a script (no sha-bang or not a file)
+#		or not readable
+
+NO_SHELL=""
+
+if [ ! -e $1 ] || [ ! -f $1 ] || [ ! -r $1 ]; then
+	echo $NO_SHELL
+	exit 1
+fi
+
+SHA_BANG_START="#!/bin/"
+SH="sh"
+BASH="bash"
+CSH="csh"
+KSH="ksh"
+TCSH="tcsh"
+ZSH="zsh"
 
 shabang=`head -n 1 $1`
-echo $shabang
-# https://stackabuse.com/substrings-in-bash/
-shell=${shabang:7}
+
+if [ -z $shabang ]; then
+	shell=$NO_SHELL
+elif [ $shabang = "$SHA_BANG_START$SH" ]; then
+	shell=$SH
+elif [ $shabang = "$SHA_BANG_START$BASH" ]; then
+	shell=$BASH
+elif [ $shabang = "$SHA_BANG_START$CSH" ]; then
+	shell=$CSH
+elif [ $shabang = "$SHA_BANG_START$KSH" ]; then
+	shell=$KSH
+elif [ $shabang = "$SHA_BANG_START$TCSH" ]; then
+	shell=$TCSH
+elif [ $shabang = "$SHA_BANG_START$ZSH" ]; then
+	shell=$ZSH
+else
+	shell=$NO_SHELL
+fi
+
 echo $shell

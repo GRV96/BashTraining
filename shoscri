@@ -12,3 +12,6 @@
 
 shabang=`head -n 1 $1`
 echo $shabang
+# https://stackabuse.com/substrings-in-bash/
+shell=${shabang:7}
+echo $shell

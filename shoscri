@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Determines the shell used by a script according to its sha-bang.
+# The name is short for "shell of script".
+
+# Parameters
+#	$1: a filepath
+
+# Output
+#	The script's shell's name
+#	Or "-" if $1 is not a script (no sha-bang or not a file)
+
+shabang=`head -n 1 $1`
+echo $shabang

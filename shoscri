@@ -28,19 +28,19 @@ ZSH="zsh"
 
 shabang=`head -n 1 $1`
 
-if [ -z $shabang ]; then
+if [ -z "$shabang" ]; then
 	shell=$NO_SHELL
-elif [ $shabang = "$SHA_BANG_START$SH" ]; then
+elif [ "$shabang" = "$SHA_BANG_START$SH" ]; then
 	shell=$SH
-elif [ $shabang = "$SHA_BANG_START$BASH" ]; then
+elif [ "$shabang" = "$SHA_BANG_START$BASH" ]; then
 	shell=$BASH
-elif [ $shabang = "$SHA_BANG_START$CSH" ]; then
+elif [ "$shabang" = "$SHA_BANG_START$CSH" ]; then
 	shell=$CSH
-elif [ $shabang = "$SHA_BANG_START$KSH" ]; then
+elif [ "$shabang" = "$SHA_BANG_START$KSH" ]; then
 	shell=$KSH
-elif [ $shabang = "$SHA_BANG_START$TCSH" ]; then
+elif [ "$shabang" = "$SHA_BANG_START$TCSH" ]; then
 	shell=$TCSH
-elif [ $shabang = "$SHA_BANG_START$ZSH" ]; then
+elif [ "$shabang" = "$SHA_BANG_START$ZSH" ]; then
 	shell=$ZSH
 else
 	shell=$NO_SHELL

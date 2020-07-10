@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Copies the given scripts to directory /usr/local/bin/ so that they
+# become commands that can be used in the console and every script.
+
+# Parameters: one or more scripts
+
+scripts=""
+
+until [ -z $1 ]; do
+	# Check if the current parameter is a script.
+	shell=`shoscri $1`
+	if [ ! -z $shell ]; then
+		scripts="$scripts $1"
+	fi
+	shift
+done
+
+if [ -z "$scripts" ]; then
+	echo "Error: no script received"
+else
+	sudo cp$scripts /usr/local/bin/
+fi

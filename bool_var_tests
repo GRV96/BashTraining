@@ -14,5 +14,64 @@ function boolVarTest
 	fi	
 }
 
-boolVarTest 1 ""
-boolVarTest 2 ajxo # "Thing" in Esperanto
+# The test cases are based on this discussion:
+# https://stackoverflow.com/questions/2953646/how-can-i-declare-and-use-boolean-variables-in-a-shell-script
+
+boolVarTest
+boolVarTest 1.1
+boolVarTest 1.2 ""
+boolVarTest 1.3 ajxo
+
+var=
+boolVarTest 2.1.1 $var
+boolVarTest 2.1.2 '$var'
+boolVarTest 2.1.3 "$var"
+boolVarTest 2.1.4 ${var}
+
+var=''
+boolVarTest 2.2.1 $var
+boolVarTest 2.2.2 '$var'
+boolVarTest 2.2.3 "$var"
+boolVarTest 2.2.4 ${var}
+
+var=""
+boolVarTest 2.3.1 $var
+boolVarTest 2.3.2 '$var'
+boolVarTest 2.3.3 "$var"
+boolVarTest 2.3.4 ${var}
+
+var=ajxo
+boolVarTest 3.1.1 $var
+boolVarTest 3.1.2 '$var'
+boolVarTest 3.1.3 "$var"
+boolVarTest 3.1.4 ${var}
+
+var='ajxo'
+boolVarTest 3.2.1 $var
+boolVarTest 3.2.2 '$var'
+boolVarTest 3.2.3 "$var"
+boolVarTest 3.2.4 ${var}
+
+var="ajxo"
+boolVarTest 3.3.1 $var
+boolVarTest 3.3.2 '$var'
+boolVarTest 3.3.3 "$var"
+boolVarTest 3.3.4 ${var}
+
+var=`pwd`
+boolVarTest 4.1.1 $var
+boolVarTest 4.1.2 '$var'
+boolVarTest 4.1.3 "$var"
+boolVarTest 4.1.4 ${var}
+
+var=`echo ajxo`
+boolVarTest 4.2.1 $var
+boolVarTest 4.2.2 '$var'
+boolVarTest 4.2.3 "$var"
+boolVarTest 4.2.4 ${var}
+
+unset var
+boolVarTest 5.1 $var
+boolVarTest 5.2 '$var'
+boolVarTest 5.3 "$var"
+boolVarTest 5.4 ${var}

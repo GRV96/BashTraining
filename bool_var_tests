@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function boolVarTest
+{
+	# $1: test number
+	# $2: argument for if statements
+
+	echo -e "Test $1\n\t$2"
+	if [ $2 ]; then
+		echo -e "\ttrue"
+	fi
+	if [ ! $2 ]; then
+		echo -e "\tfalse"
+	fi	
+}
+
+boolVarTest 1 ""
+boolVarTest 2 ajxo # "Thing" in Esperanto

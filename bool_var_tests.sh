@@ -1,0 +1,93 @@
+#!/bin/bash
+
+function boolVarTest
+{
+	# $1: test number
+	# $2: argument for if statements
+
+	echo -e "Test $1\n\t$2"
+	if [ $2 ]; then
+		echo -e "\ttrue"
+	fi
+	if [ ! $2 ]; then
+		echo -e "\tfalse"
+	fi	
+}
+
+# The test cases are based on this discussion:
+# https://stackoverflow.com/questions/2953646/how-can-i-declare-and-use-boolean-variables-in-a-shell-script
+
+boolVarTest
+boolVarTest 1.1.1
+boolVarTest 1.1.2 ''
+boolVarTest 1.1.3 ""
+#boolVarTest 1.1.4 ${} # Does not work.
+
+echo
+boolVarTest 1.2.1 ajxo
+boolVarTest 1.2.2 'ajxo'
+boolVarTest 1.2.3 "ajxo"
+boolVarTest 1.2.4 ${ajxo}
+
+echo -e "\nvar="
+var=
+boolVarTest 2.1.1 $var
+boolVarTest 2.1.2 '$var'
+boolVarTest 2.1.3 "$var"
+boolVarTest 2.1.4 ${var}
+
+echo -e "\nvar=''"
+var=''
+boolVarTest 2.2.1 $var
+boolVarTest 2.2.2 '$var'
+boolVarTest 2.2.3 "$var"
+boolVarTest 2.2.4 ${var}
+
+echo -e "\nvar=\"\""
+var=""
+boolVarTest 2.3.1 $var
+boolVarTest 2.3.2 '$var'
+boolVarTest 2.3.3 "$var"
+boolVarTest 2.3.4 ${var}
+
+echo -e "\nvar=ajxo"
+var=ajxo
+boolVarTest 3.1.1 $var
+boolVarTest 3.1.2 '$var'
+boolVarTest 3.1.3 "$var"
+boolVarTest 3.1.4 ${var}
+
+echo -e "\nvar='ajxo'"
+var='ajxo'
+boolVarTest 3.2.1 $var
+boolVarTest 3.2.2 '$var'
+boolVarTest 3.2.3 "$var"
+boolVarTest 3.2.4 ${var}
+
+echo -e "\nvar=\"ajxo\""
+var="ajxo"
+boolVarTest 3.3.1 $var
+boolVarTest 3.3.2 '$var'
+boolVarTest 3.3.3 "$var"
+boolVarTest 3.3.4 ${var}
+
+echo -e "\nvar=\`pwd\`"
+var=`pwd`
+boolVarTest 4.1.1 $var
+boolVarTest 4.1.2 '$var'
+boolVarTest 4.1.3 "$var"
+boolVarTest 4.1.4 ${var}
+
+echo -e "\nvar=\`echo ajxo\`"
+var=`echo ajxo`
+boolVarTest 4.2.1 $var
+boolVarTest 4.2.2 '$var'
+boolVarTest 4.2.3 "$var"
+boolVarTest 4.2.4 ${var}
+
+echo -e "\nunset var"
+unset var
+boolVarTest 5.1 $var
+boolVarTest 5.2 '$var'
+boolVarTest 5.3 "$var"
+boolVarTest 5.4 ${var}

@@ -91,3 +91,17 @@ boolVarTest 5.1 $var
 boolVarTest 5.2 '$var'
 boolVarTest 5.3 "$var"
 boolVarTest 5.4 ${var}
+
+echo -e "\nvar=0"
+var=0
+boolVarTest 6.1 $var
+boolVarTest 6.2 '$var'
+boolVarTest 6.3 "$var"
+boolVarTest 6.4 ${var}
+
+echo -e "\nvar=1"
+var=1
+boolVarTest 7.1 $var
+boolVarTest 7.2 '$var'
+boolVarTest 7.3 "$var"
+boolVarTest 7.4 ${var}
